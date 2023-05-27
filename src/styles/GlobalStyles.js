@@ -11,6 +11,15 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Inter Variable', sans-serif;
+    background: linear-gradient(45deg,
+      #D9D0DB 0%,
+      #D9D0DB 60%,
+      #E7D4C9 60%,
+      #E7D4C9 80%,
+      #CCB7C7 80%,
+      #CCB7C7 100%);
+    min-height:100vh;
+    backdrop-filter: blur(100px);
   }
 
   ul{

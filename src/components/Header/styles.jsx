@@ -11,6 +11,12 @@ export const NavBar = styled.nav`
   }
 
   li{
+
+    &:first-child{
+        font-family:"righteous", sans-serif;
+        font-size:30px;
+    }
+
     height:70px;
     max-width:300px;
     flex:1;
@@ -18,5 +24,10 @@ export const NavBar = styled.nav`
     display:flex;
     align-items: center;
     justify-content:center;
+    font-weight: 400;
+    
+    a{
+        color:black;
+    }
   }
 `;

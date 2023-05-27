@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, NavBar } from './styles';
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -10,16 +11,24 @@ const Header = () => {
                         Drovem
                     </li>
                     <li>
-                        Home
+                        <Link>
+                            Home
+                        </Link>
                     </li>
                     <li>
-                        Cadastrar Estudante
+                        <Link>
+                            Cadastrar Estudante
+                        </Link>
                     </li>
                     <li>
-                        Entrega de Projeto
+                        <Link>
+                            Entrega de Projeto
+                        </Link>
                     </li>
                     <li>
-                        Lista de Projetos Entregues
+                        <Link>
+                            Lista de Projetos Entregues
+                        </Link>
                     </li>
                 </ul>
             </NavBar>
