@@ -39,19 +39,27 @@ const RegisterStudentPage = () => {
 
         console.log(data);
     };
-
+    
     return (
         <>
             <Header />
             <Container>
                 <h2>Cadastro de Estudante</h2>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                    <Input type="text" name="nome" {...register("nome", { required: true })} placeholder="Nome" />
-                    <Input type="text" name="cpf" {...register("cpf", { required: true, minLength: 11, maxLength: 11 })} placeholder="CPF" />
-                    <Input type="email" name="email" {...register("email", { required: true })} placeholder="Email" />
-                    <Input type="text" name="foto" {...register("foto", { required: true })} placeholder="Foto" />
+                <label for="nome">Nome</label>
+                    <Input type="text" name="nome" {...register("nome", { required: true })} placeholder="Nome" id="nome"/>
 
-                    <Select name="turma" {...register("turma", { required: true, valueAsNumber: true })}>
+                    <label for="cpf">CPF</label>
+                    <Input type="text" name="cpf" {...register("cpf", { required: true, minLength: 11, maxLength: 11 })} placeholder="CPF" id="cpf"/>
+
+                    <label for="email">Nome</label>
+                    <Input type="email" name="email" {...register("email", { required: true })} placeholder="Email" id="email"/>
+
+                    <label for="foto">Nome</label>
+                    <Input type="text" name="foto" {...register("foto", { required: true })} placeholder="Foto" id="foto"/>
+
+                    <label for="turma">Selecione sua turma:</label>
+                    <Select name="turma" {...register("turma", { required: true, valueAsNumber: true })} id="turma">
                         {classes?.map(turma => (
                             <option value={turma.id}>{turma.nome}</option>
                         ))}

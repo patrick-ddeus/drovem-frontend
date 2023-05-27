@@ -4,10 +4,14 @@ import Header from '../../components/Header';
 import Students from '../../service/students';
 import Classes from '../../service/classes';
 import { Container, Form, Input, Select, Button } from './styles';
+import Projects from '../../service/projects';
 
 const SendProjectPage = () => {
     const { register, handleSubmit } = useForm();
     const [classes, setClasses] = useState(null);
+    const [students, setStudents] = useState(null);
+    const [projects, setProjects] = useState(null);
+    const [chosenClass, setChosenClass] = useState(1);
 
     useEffect(() => {
         const fetchClasses = async () => {
@@ -19,26 +23,47 @@ const SendProjectPage = () => {
             }
         };
 
+        const fetchProjects = async () => {
+            try {
+                const response = await Projects.getAllProjects();
+                setProjects(response);
+            } catch (error) {
+                console.error(error.message);
+            }
+        };
+
         fetchClasses();
+        fetchProjects();
     }, []);
 
-    const onSubmit = async (data) => {
+    useEffect(() => {
+        const fetchStudents = async () => {
+            try {
+                const response = await Students.getStudentsByClass(chosenClass);
+                setStudents(response);
+            } catch (error) {
+                console.error(error.message);
+            }
+        };
 
+        fetchStudents();
+    }, [chosenClass]);
+
+    const onSubmit = async (data) => {
         if (isNaN(data.turma)) {
             data.turma = 1;
         }
 
-        const body = { ...data };
+        if (isNaN(data.estudante)) {
+            data.estudante = 1;
+        }
 
-        try {
-            await Students.registerStudent(body);
-        } catch (error) {g
-            console.error(error.message);
+        if (isNaN(data.projeto)) {
+            data.projeto = 1;
         }
 
         console.log(data);
     };
-
 
     return (
         <>
@@ -47,25 +72,49 @@ const SendProjectPage = () => {
                 <h2>Entrega de Projeto</h2>
                 <Form onSubmit={handleSubmit(onSubmit)}>
 
-                    <label for="nome">Nome</label>
-                    <Input type="text" name="nome" {...register("nome", { required: true })} placeholder="Nome" id="nome"/>
-
-                    <label for="cpf">CPF</label>
-                    <Input type="text" name="cpf" {...register("cpf", { required: true, minLength: 11, maxLength: 11 })} placeholder="CPF" id="cpf"/>
-
-                    <label for="email">Nome</label>
-                    <Input type="email" name="email" {...register("email", { required: true })} placeholder="Email" id="email"/>
-
-                    <label for="foto">Nome</label>
-                    <Input type="text" name="foto" {...register("foto", { required: true })} placeholder="Foto" id="foto"/>
-
-                    <label for="turma">Selecione sua turma:</label>
-                    <Select name="turma" {...register("turma", { required: true, valueAsNumber: true })} id="turma">
+                    <label htmlFor="turma">Selecione sua turma:</label>
+                    <Select
+                        name="turma"
+                        {...register("turma", {
+                            required: true,
+                            valueAsNumber: true,
+                            onChange: (e) => setChosenClass(e.target.value)
+                        })}
+                        id="turma">
                         {classes?.map(turma => (
-                            <option value={turma.id}>{turma.nome}</option>
+                            <option key={turma.id} value={turma.id}>{turma.nome}</option>
                         ))}
-
                     </Select>
+
+                    <label htmlFor="estudante">Selecione seu nome:</label>
+                    <Select
+                        name="estudante"
+                        {...register("estudante", {
+                            required: true,
+                            valueAsNumber: true
+                        })}
+                        id="turma">
+                        {students?.map(estudante => (
+                            <option value={estudante.id}>{estudante.nome}</option>
+                        ))}
+                    </Select>
+
+                    <label htmlFor="projeto">Selecione o projeto:</label>
+                    <Select
+                        name="projeto"
+                        {...register("projeto", {
+                            required: true,
+                            valueAsNumber: true
+                        })}
+                        id="turma">
+                        {projects?.map(projeto => (
+                            <option value={projeto.id}>{projeto.nome}</option>
+                        ))}
+                    </Select>
+
+                    <label for="link">Link do Projeto:</label>
+                    <Input type="text" name="link" {...register("link", { required: true })} placeholder="Link do Projeto" id="link"/>
+
                     <Button type="submit">Salvar</Button>
                 </Form>
             </Container>

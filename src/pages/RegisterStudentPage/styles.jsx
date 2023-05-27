@@ -20,6 +20,10 @@ export const Form = styled.form`
     margin-top:30px;
     background: #ffffff78;
     border-radius:5px;
+
+    label{
+       align-self:flex-start;
+    }
 `;
 
 export const Input = styled.input`
