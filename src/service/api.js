@@ -1,5 +1,11 @@
 import axios, { AxiosError } from "axios";
 
+const methods = [
+    "get",
+    "post",
+    "put"
+];
+
 const axiosInstance = axios.create({
     baseURL: "http://localhost:5000",
     headers: { "Content-Type": "application/json" },
@@ -14,7 +20,7 @@ const queryStringBuilder = (query) =>
 
 const axiosMethods = {}
 
-["get", "post", "put"].forEach((method) => {
+methods.forEach((method) => {
     axiosMethods[method] = async function (route, body, query = {}, fullResponse = false) {
         try {
             const url = `${route}${queryStringBuilder(query)}`;

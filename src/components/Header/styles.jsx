@@ -15,6 +15,7 @@ export const NavBar = styled.nav`
     &:first-child{
         font-family:"righteous", sans-serif;
         font-size:30px;
+        
     }
 
     height:70px;
@@ -25,6 +26,7 @@ export const NavBar = styled.nav`
     align-items: center;
     justify-content:center;
     font-weight: 400;
+    border-left:0;
     
     a{
         color:black;
