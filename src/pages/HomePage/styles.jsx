@@ -11,25 +11,23 @@ export const SideBar = styled.div`
     align-items: center;
     flex-direction: column;
     gap:20px;
-
-    li{
-        cursor:pointer;
-        transition: text-decoration 0.3s ease;
-
-        &:hover{
-            text-decoration: underline;
-        }
-    }
   }
   
 `;
 
 export const StudentsContent = styled.section`
-    margin-top:30px;
+    padding-top:27px;
     width:calc(100vw - 20vw);
+
     h2{
         text-align:center;
         margin-bottom:10px;
+    }
+
+    ul{
+      max-height:78vh;
+      overflow-y:auto;
+      padding:20px 0;
     }
 `;
 
@@ -38,14 +36,27 @@ export const MainContent = styled.main`
   margin-top:20px;
 `;
 
+export const ClassItem = styled.li`
+  cursor:pointer;
+  transition: text-decoration 0.3s ease;
+  text-decoration: ${({ underlined }) => underlined ? "underline" : "none"};
+
+  &:hover{
+      text-decoration: underline;
+  }
+`;
+
 export const StudentItem = styled.li`
   padding:10px;
 
   margin: 5px 15px 20px;
-  border:1px solid black;
+  border-radius:5px;
   display:flex;
   align-items: center;
   gap:50px;
+  background: #ffffff65;
+  backdrop-filter: blur(100px);
+  color:#101213;
 
   img{
     width:70px;

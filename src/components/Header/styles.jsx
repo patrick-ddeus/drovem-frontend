@@ -15,11 +15,9 @@ export const NavBar = styled.nav`
     &:first-child{
         font-family:"righteous", sans-serif;
         font-size:30px;
-        
     }
 
     height:70px;
-    max-width:300px;
     flex:1;
     border:1px solid #101213;
     display:flex;

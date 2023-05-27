@@ -3,7 +3,7 @@ import Header from '../../components/Header';
 import Classes from '../../service/classes';
 import Students from '../../service/students';
 
-import { SideBar, StudentsContent, MainContent, StudentItem } from './styles';
+import { SideBar, StudentsContent, MainContent, StudentItem, ClassItem } from './styles';
 
 const TYPES = Object.freeze({
     FETCH_REQUEST: 'FETCH_REQUEST',
@@ -54,7 +54,6 @@ const HomePage = () => {
             dispatch({ type: TYPES.FETCH_REQUEST });
             try {
                 const response = await Students.getStudentsByClass(chosenClass);
-                console.log(students);
                 dispatch({ type: TYPES.FETCH_SUCCESS, payload: response });
 
             } catch (error) {
@@ -74,20 +73,31 @@ const HomePage = () => {
             <MainContent>
                 <SideBar>
                     <ul>
+                        <ClassItem
+                            underlined={chosenClass === ""}
+                            onClick={() => setChosenClass("")}>
+                            Mostrar todos
+                        </ClassItem>
                         {memoizedData?.map((turma) => (
-                            <li onClick={() => setChosenClass(turma.id)}>{turma.nome}</li>
+                            <ClassItem
+                                underlined={chosenClass === turma.id}
+                                onClick={() => setChosenClass(turma.id)}>
+                                {turma.nome}
+                            </ClassItem>
                         ))}
                     </ul>
                 </SideBar>
                 <StudentsContent>
                     <h2>Estudantes da Turma {chosenClass}</h2>
                     <ul>
-                        {students?.map(student => (
-                            <StudentItem>
-                                <img src={student.foto} alt="" />
-                                {student.nome}
-                            </StudentItem>
-                        ))}
+                        {
+                            loading ? <p>Carregando...</p> :
+                                students?.map(student => (
+                                    <StudentItem>
+                                        <img src={student.foto} alt="" />
+                                        {student.nome}
+                                    </StudentItem>
+                                ))}
                     </ul>
                 </StudentsContent>
             </MainContent>

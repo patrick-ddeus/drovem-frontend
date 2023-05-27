@@ -11,17 +11,17 @@ const Header = () => {
                         Drovem
                     </li>
                     <li>
-                        <Link>
-                            Home
+                        <Link to="/">
+                            Listar Estudantes
                         </Link>
                     </li>
                     <li>
-                        <Link>
+                        <Link to="/students/register">
                             Cadastrar Estudante
                         </Link>
                     </li>
                     <li>
-                        <Link>
+                        <Link to="/projects/send">
                             Entrega de Projeto
                         </Link>
                     </li>
