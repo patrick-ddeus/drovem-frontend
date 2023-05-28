@@ -5,6 +5,7 @@ import Students from '../../service/students';
 import Classes from '../../service/classes';
 import { Container, Form, Input, Select, Button } from './styles';
 import Projects from '../../service/projects';
+import { useNavigate } from "react-router-dom";
 
 const SendProjectPage = () => {
     const { register, handleSubmit } = useForm();
@@ -12,6 +13,7 @@ const SendProjectPage = () => {
     const [students, setStudents] = useState(null);
     const [projects, setProjects] = useState(null);
     const [chosenClass, setChosenClass] = useState(1);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchClasses = async () => {
@@ -62,7 +64,14 @@ const SendProjectPage = () => {
             data.projeto = 1;
         }
 
-        console.log(data);
+        const body = { ...data };
+
+        try {
+            await Projects.registerProject(body);
+            navigate("/")
+        } catch (error) {
+            console.error(error.message);
+        }
     };
 
     return (
@@ -113,7 +122,7 @@ const SendProjectPage = () => {
                     </Select>
 
                     <label for="link">Link do Projeto:</label>
-                    <Input type="text" name="link" {...register("link", { required: true })} placeholder="Link do Projeto" id="link"/>
+                    <Input type="text" name="link" {...register("link", { required: true })} placeholder="Link do Projeto" id="link" />
 
                     <Button type="submit">Salvar</Button>
                 </Form>

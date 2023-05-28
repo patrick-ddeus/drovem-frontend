@@ -5,10 +5,17 @@ const getAllProjects = () => {
     return api.get(`/projects/list`);
 };
 
-const registerStudent = (body) => {
-    return api.post(`/students/register`, body);
+const registerProject = (body) => {
+    return api.post(`/projects/send`, body);
+};
+
+const listDoneProjects = (projeto, turma) => {
+    const query = { projeto, turma };
+    return api.get(`/projects/list/done`, {}, query)
 };
 
 export default {
     getAllProjects,
+    registerProject,
+    listDoneProjects
 };

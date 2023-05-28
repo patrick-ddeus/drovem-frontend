@@ -10,6 +10,7 @@ const Header = () => {
                     <li>
                         Drovem
                     </li>
+                    
                     <li>
                         <Link to="/">
                             Listar Estudantes
@@ -26,7 +27,7 @@ const Header = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link>
+                        <Link to="/projects">
                             Lista de Projetos Entregues
                         </Link>
                     </li>

@@ -3,12 +3,14 @@ import { useForm } from 'react-hook-form';
 import Header from '../../components/Header';
 import Classes from '../../service/classes';
 import Students from '../../service/students';
+import { useNavigate } from "react-router-dom";
 
 import { Container, Form, Input, Select, Button } from './styles';
 
 const RegisterStudentPage = () => {
     const { register, handleSubmit } = useForm();
     const [classes, setClasses] = useState(null);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchClasses = async () => {
@@ -33,13 +35,12 @@ const RegisterStudentPage = () => {
 
         try {
             await Students.registerStudent(body);
+            navigate("/")
         } catch (error) {
             console.error(error.message);
         }
-
-        console.log(data);
     };
-    
+
     return (
         <>
             <Header />
