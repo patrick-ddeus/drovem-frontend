@@ -81,6 +81,7 @@ const HomePage = () => {
                         </ClassItem>
                         {memoizedData?.map((turma) => (
                             <ClassItem
+                                key={turma.id}
                                 underlined={chosenClass === turma.id}
                                 onClick={() => setChosenClass(turma.id)}>
                                 {turma.nome}
@@ -94,7 +95,7 @@ const HomePage = () => {
                         {
                             loading ? <p>Carregando...</p> :
                                 students?.map(student => (
-                                    <Link to={`/students/${student.id}`}>
+                                    <Link key={student.id} to={`/students/${student.id}`}>
                                         <StudentItem>
                                             <img src={student.foto} alt="" />
                                             {student.nome}

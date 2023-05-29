@@ -50,7 +50,7 @@ function StudentPage() {
                     <p>Turmas:</p>
                     <ul>
                         {student.turmas.map(turma => (
-                            <ClassItem highlighted={turma.data_saida === null}>
+                            <ClassItem key={turma.id} highlighted={turma.data_saida === null}>
                                 <p>
                                     {turma.nome_turma}
                                 </p>

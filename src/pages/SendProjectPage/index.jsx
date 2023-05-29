@@ -104,7 +104,7 @@ const SendProjectPage = () => {
                         })}
                         id="turma">
                         {students?.map(estudante => (
-                            <option value={estudante.id}>{estudante.nome}</option>
+                            <option key={estudante.id} value={estudante.id}>{estudante.nome}</option>
                         ))}
                     </Select>
 
@@ -117,11 +117,11 @@ const SendProjectPage = () => {
                         })}
                         id="turma">
                         {projects?.map(projeto => (
-                            <option value={projeto.id}>{projeto.nome}</option>
+                            <option key={projeto.id} value={projeto.id}>{projeto.nome}</option>
                         ))}
                     </Select>
 
-                    <label for="link">Link do Projeto:</label>
+                    <label htmlFor="link">Link do Projeto:</label>
                     <Input type="text" name="link" {...register("link", { required: true })} placeholder="Link do Projeto" id="link" />
 
                     <Button type="submit">Salvar</Button>

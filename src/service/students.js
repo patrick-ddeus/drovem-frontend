@@ -14,8 +14,13 @@ const registerStudent = (body) => {
     return api.post(`/students/register`, body);
 };
 
+const updateStudent = (body) => {
+    return api.put(`/students/update`, body);
+};
+
 export default {
     getStudentsByClass,
     registerStudent,
-    getStudentById
+    getStudentById,
+    updateStudent
 };

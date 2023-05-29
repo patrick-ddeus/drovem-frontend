@@ -5,6 +5,11 @@ const getAllClasses = () => {
     return api.get(`/classes`);
 };
 
+const getClassesByStudentId = (id) => {
+    return api.get(`/classes/${id}`);
+}
+
 export default {
-    getAllClasses
+    getAllClasses,
+    getClassesByStudentId
 };

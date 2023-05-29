@@ -47,22 +47,22 @@ const RegisterStudentPage = () => {
             <Container>
                 <h2>Cadastro de Estudante</h2>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                <label for="nome">Nome</label>
+                <label htmlFor="nome">Nome</label>
                     <Input type="text" name="nome" {...register("nome", { required: true })} placeholder="Nome" id="nome"/>
 
-                    <label for="cpf">CPF</label>
+                    <label htmlFor="cpf">CPF</label>
                     <Input type="text" name="cpf" {...register("cpf", { required: true, minLength: 11, maxLength: 11 })} placeholder="CPF" id="cpf"/>
 
-                    <label for="email">Nome</label>
+                    <label htmlFor="email">Nome</label>
                     <Input type="email" name="email" {...register("email", { required: true })} placeholder="Email" id="email"/>
 
-                    <label for="foto">Nome</label>
+                    <label htmlFor="foto">Nome</label>
                     <Input type="text" name="foto" {...register("foto", { required: true })} placeholder="Foto" id="foto"/>
 
-                    <label for="turma">Selecione sua turma:</label>
+                    <label htmlFor="turma">Selecione sua turma:</label>
                     <Select name="turma" {...register("turma", { required: true, valueAsNumber: true })} id="turma">
                         {classes?.map(turma => (
-                            <option value={turma.id}>{turma.nome}</option>
+                            <option key={turma.id} value={turma.id}>{turma.nome}</option>
                         ))}
 
                     </Select>
