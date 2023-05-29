@@ -6,11 +6,16 @@ const getStudentsByClass = (turma = "") => {
     return api.get(`/students/list`, {}, query);
 };
 
+const getStudentById = (id) => {
+    return api.get(`students/list/${id}`)
+}
+
 const registerStudent = (body) => {
     return api.post(`/students/register`, body);
 };
 
 export default {
     getStudentsByClass,
-    registerStudent
+    registerStudent,
+    getStudentById
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import Header from '../../components/Header';
 import Classes from '../../service/classes';
 import Students from '../../service/students';
+import { Link } from "react-router-dom";
 
 import { SideBar, StudentsContent, MainContent, StudentItem, ClassItem } from './styles';
 
@@ -93,10 +94,12 @@ const HomePage = () => {
                         {
                             loading ? <p>Carregando...</p> :
                                 students?.map(student => (
-                                    <StudentItem>
-                                        <img src={student.foto} alt="" />
-                                        {student.nome}
-                                    </StudentItem>
+                                    <Link to={`/students/${student.id}`}>
+                                        <StudentItem>
+                                            <img src={student.foto} alt="" />
+                                            {student.nome}
+                                        </StudentItem>
+                                    </Link>
                                 ))}
                     </ul>
                 </StudentsContent>
