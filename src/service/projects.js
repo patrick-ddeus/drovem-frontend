@@ -11,11 +11,17 @@ const registerProject = (body) => {
 
 const listDoneProjects = (projeto, turma) => {
     const query = { projeto, turma };
+    
     return api.get(`/projects/list/done`, {}, query)
 };
+
+const updateGrade = (body) => {
+    return api.put(`/projects/grades`, body);
+}
 
 export default {
     getAllProjects,
     registerProject,
-    listDoneProjects
+    listDoneProjects,
+    updateGrade
 };
